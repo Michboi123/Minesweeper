@@ -17,11 +17,18 @@ class Cell{
     fill(255,255,255);
     if(bomb==true && clicked==true){
       fill(255,0,0);
+      rect(column*20,row*20,w,h);
     }
     else if(clicked==true){
-      text(num,column*20,row*20);
+      fill(0,255,0);
+      rect(column*20,row*20,w,h);
+      fill(0);
+      text(num,column*20+10,row*20+10);
     }
-    rect(column*20,row*20,w,h);
+    else{
+      fill(255);
+      rect(column*20,row*20,w,h);
+    }
   }
   public boolean mouseover(){
     if((mouseX>= column*20 && mouseX<=column*20+20) && (mouseY>=row*20 && mouseY<=row*20+20)){
@@ -38,11 +45,3 @@ class Cell{
     }
   }
 }
-
-//From Jason Huang to Everyone:  03:54 PM
-//1) in the constructor of the grid, program a function called placeBombs
-//2) use a nested for loop to go through each row and column of the 2d array of Cells
-//3) randomly decided to turn on the bomb variable in the cell in the nested for loop
-//4) in the show function of the Cell if the bomb variable is true then change the color to be red
-//5) write a function in the Cell called mouseover that will return a boolean
-//6) in the function check if the mouse is on top of the Cell object or not based on the xy coordinates
