@@ -15,9 +15,13 @@ class Cell {
   }
   public void show() {
     fill(255, 255, 255);
-    if (bomb==true && clicked==true) {
+    if(flag==true){
+      image(f,column*20,row*20,20,20);
+    }
+    else if (bomb==true && clicked==true) {
       fill(255, 0, 0);
       rect(column*20, row*20, w, h);
+      noLoop();
     } else if (clicked==true) {
       fill(0, 255, 0);
       rect(column*20, row*20, w, h);
@@ -37,9 +41,17 @@ class Cell {
   }
   public void update() {
     show();
-    if (mouseover()==true && mousePressed==true) {
+    if (mouseover()==true && cleft==true) {
       clicked=true;
       reveal();
+    }
+    if (mouseover()==true && cright==true) {
+      if(flag==true){
+        flag=false;
+      }
+      else{
+        flag=true;
+      }
     }
   }
   public void reveal() {

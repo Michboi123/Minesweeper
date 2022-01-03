@@ -1,5 +1,6 @@
 class Grid{
   public Cell[][] bob;
+  public int bombnum=0;
   public Grid(){
     bob=new Cell[40][40];
     for(int row=0;row<40;row++){
@@ -10,6 +11,7 @@ class Grid{
     placeBombs();
   }
   public void show(){
+    text(bombnum,800,20);
     for(int row=0;row<40;row++){
       for(int column=0;column<40;column++){
         bob[row][column].update();
@@ -22,6 +24,7 @@ class Grid{
         int ran=int(random(0,9));
         if(ran==1){
           bob[row][column].bomb=true;
+          bombnum=bombnum+1;
         }
       }
     }
@@ -44,5 +47,20 @@ class Grid{
       }
     }
   }
+  public boolean checkW(){
+    int count=0;
+    for(int row=0;row<40;row++){
+      for(int column=0;column<40;column++){
+        if(bob[row][column].clicked==false){
+          count=count+1;
+        }
+      }
+    }
+    if(count==bombnum){
+      return(true);
+    }
+    else{
+      return false;
+    }
+  }
 }
-//homework:fix the outofbounds bug
